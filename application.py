@@ -76,12 +76,12 @@ def depth_error():
     cursor = connection.cursor()
     depth1 = request.args['depth1']
     depth2 = request.args['depth2']
-    longitude= request.args['longitude']
+    longitude = request.args['longitude']
     # start_time = time.time()
     # list_of_times = []
     # for i in range(0, int(query_limit)):
     #     start_intermediate_time = time.time()
-    sql = "select * from quake6 where depthError > ? and depthError < ? and longitude > ?"
+    sql = "select * from quake6 where depthError >= ? and depthError <= ? and longitude > ?"
     paramlist=[depth1, depth2, longitude]
     cursor.execute(sql, paramlist)
     result = cursor.fetchall()
