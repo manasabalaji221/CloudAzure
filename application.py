@@ -64,10 +64,10 @@ def redis_cache():
         cursor.execute(sql, (magnitude,))
         rows = cursor.fetchall()
         cache.set(magnitude, str(rows))
-        flash('In DB Query' + str(magnitude))
+        flash('In DB Query with Magnitude: ' + str(magnitude))
     else:
         rows_string = cache.get(magnitude)
-        flash('In Cache' + str(rows_string))
+        flash('In Cache with Magnitude: ' + str(magnitude))
     return render_template('redis_cache.html')
 
 
