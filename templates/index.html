@@ -12,6 +12,20 @@
 
     </h1>
     <h2>The number of rows in the file is: {{count}}</h2>
+
+<br/><br/>
+<form name="query_random" action = "/query_random" method = "get" enctype = "multipart/form-data">
+    Give a query limit: <input type="text" name="query_limit">
+    <input type="Submit" value="Search">
+</form>
+<form name="restricted" action = "/restricted" method = "get" enctype = "multipart/form-data">
+    Enter the number of queries to process: <input type="number" name="query_limit1">
+    Lower magnitude: <input type="number" name="lowmag">  Higher Magnitude: <input type="number" name="highermag">  <br>
+
+    <input type="Submit" value="Search">
+</form>
+
+<br/><br/>
 </center>
 </body>
 </html>
