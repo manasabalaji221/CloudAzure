@@ -68,7 +68,7 @@ def redis_cache():
     else:
         rows_string = cache.get(magnitude)
         flash('In Cache' + str(rows_string))
-    # return render_template('redis_cache.html')
+    return render_template('redis_cache.html')
 
 
 if __name__ == '__main__':
