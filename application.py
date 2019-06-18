@@ -56,7 +56,7 @@ def redis_cache():
     cursor = connection.cursor()
     magnitude = request.args['magnitude']
     host_name = 'redism1.redis.cache.windows.net'
-    password = '9HGqR0jGGu2dK7TvXitwPISiq4ETsK5fL5IRngx73hM'
+    password = '9HGqR0jGGu2dK7TvXitwPISiq4ETsK5fL5IRngx73hM='
     cache = redis.StrictRedis(host=host_name, port=6380, password=password, ssl=True)
     if not cache.get(magnitude):
         sql = 'select * from all_month where mag>=? '
