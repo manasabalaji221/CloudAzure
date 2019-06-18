@@ -71,5 +71,31 @@ def redis_cache():
     return render_template('redis_cache.html')
 
 
+@app.route('/depth_error', methods=['GET', 'POST'])
+def depth_error():
+    cursor = connection.cursor()
+    depth1 = request.args['depth1']
+    depth2 = request.args['depth2']
+    longitude= request.args['longitude']
+    # start_time = time.time()
+    # list_of_times = []
+    # for i in range(0, int(query_limit)):
+    #     start_intermediate_time = time.time()
+    sql = "select * from quake6 where depthError > ? and depthError < ? and longitude > ?"
+    paramlist=[depth1, depth2, longitude]
+    cursor.execute(sql, paramlist)
+    result = cursor.fetchall()
+
+    # cursor.execute("select * from quakes6 where depthError > ? and depthError < ? and longitude > ?")
+    # end_intermediate_time = time.time()
+    # intermediate_time = end_intermediate_time - start_intermediate_time
+    # list_of_times.append(intermediate_time)
+    # end_time = time.time()
+    # time_taken = (end_time-start_time) / int(query_limit)
+    # #time_taken=89
+    # list_of_times=[10,20,30]
+    return render_template('depth_error.html', result=result)
+
+
 if __name__ == '__main__':
     app.run()
