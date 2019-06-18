@@ -1,8 +1,8 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request,flash
 import random
 import pypyodbc
 import time
-
+import redis
 
 app = Flask(__name__)
 connection = pypyodbc.connect("Driver={ODBC Driver 17 for SQL Server};Server=tcp:servermanasa.database.windows.net,1433;Database=database1;Uid=serverm;Pwd=BluDiam0@;")
@@ -49,6 +49,25 @@ def restricted():
         end_time1 = time.time()
         time_taken = (end_time1 - start_time1) / int(query_limit)
     return render_template('restricted.html', time_taken=time_taken)
+
+
+@app.route('/cache')
+def cache():
+    cursor = connection.cursor()
+    magnitude = request.args['magnitude']
+    host_name = 'redism1.redis.cache.windows.net'
+    password = '9HGqR0jGGu2dK7TvXitwPISiq4ETsK5fL5IRngx73hM'
+    cache = redis.StrictRedis(host=host_name, port=6380, password=password, ssl=True)
+    if not cache.get(magnitude):
+        sql = 'select * from all_month where mag>=? '
+        cursor.execute(sql, (magnitude,))
+        rows = cursor.fetchall()
+        cache.set(magnitude, str(rows))
+        flash('In DB Query' + str(magnitude))
+    else:
+        rows_string = cache.get(magnitude)
+        flash('In Cache' + str(magnitude))
+    return render_template('redis_cache.html')
 
 
 if __name__ == '__main__':
