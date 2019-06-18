@@ -51,8 +51,8 @@ def restricted():
     return render_template('restricted.html', time_taken=time_taken)
 
 
-@app.route('/cache')
-def cache():
+@app.route('/redis_cache')
+def redis_cache():
     cursor = connection.cursor()
     magnitude = request.args['magnitude']
     host_name = 'redism1.redis.cache.windows.net'
@@ -66,8 +66,8 @@ def cache():
         flash('In DB Query' + str(magnitude))
     else:
         rows_string = cache.get(magnitude)
-        flash('In Cache' + str(magnitude))
-    return render_template('redis_cache.html')
+        flash('In Cache' + str(rows_string))
+    # return render_template('redis_cache.html')
 
 
 if __name__ == '__main__':
