@@ -5,6 +5,7 @@ import time
 import redis
 
 app = Flask(__name__)
+app.secret_key = "Secret! Dont Tell anyone"
 connection = pypyodbc.connect("Driver={ODBC Driver 17 for SQL Server};Server=tcp:servermanasa.database.windows.net,1433;Database=database1;Uid=serverm;Pwd=BluDiam0@;")
 
 
