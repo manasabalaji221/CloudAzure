@@ -60,7 +60,7 @@ def redis_cache():
     password = '9HGqR0jGGu2dK7TvXitwPISiq4ETsK5fL5IRngx73hM='
     cache = redis.StrictRedis(host=host_name, port=6380, password=password, ssl=True)
     if not cache.get(magnitude):
-        sql = 'select * from all_month where mag>=? '
+        sql = 'select * from quake6 where mag>=? '
         cursor.execute(sql, (magnitude,))
         rows = cursor.fetchall()
         cache.set(magnitude, str(rows))
@@ -97,5 +97,71 @@ def depth_error():
     return render_template('depth_error.html', result=result)
 
 
+@app.route('/depth', methods=['GET', 'POST'])
+def depth():
+    cursor = connection.cursor()
+    depth1 = request.args['depth1']
+    depth2 = request.args['depth2']
+    count = request.args['count']
+    # start_time = time.time()
+    list_of_times = []
+    # for i in range(0, int(query_limit)):
+    #     start_intermediate_time = time.time()
+    # sql = "select * from quake6 where depthError >= ? and depthError <= ? and longitude > ?"
+    # paramlist=[depth1, depth2, longitude]
+    # cursor.execute(sql, paramlist)
+    # result = cursor.fetchall()
+    countList = []
+    randList1 = []
+    randList2 = []
+    for i in range(0, int(count)):
+        start_intermediate_time = time.time()
+        rand1 = random.randint(int(depth1), int(depth2))
+        rand2 = random.randint(int(depth1), int(depth2))
+        if(rand1 > rand2):
+            t = rand1
+            rand1 = rand2
+            rand2 = t
+
+        sql = "select count(*) from quake6 where depthError >= ? and depthError <= ?"
+        paramlist = [str(rand1), str(rand2)]
+
+        cursor.execute(sql, paramlist)
+        result = cursor.fetchall()
+        countList.append(result)
+        randList1.append(str(rand1))
+        randList2.append(str(rand2))
+        end_intermediate_time = time.time()
+        intermediate_time = end_intermediate_time - start_intermediate_time
+        list_of_times.append(intermediate_time)
+
+    # cursor.execute("select * from quakes6 where depthError > ? and depthError < ? and longitude > ?")
+    # end_intermediate_time = time.time()
+    # intermediate_time = end_intermediate_time - start_intermediate_time
+    # list_of_times.append(intermediate_time)
+    # end_time = time.time()
+    # time_taken = (end_time-start_time) / int(query_limit)
+    # #time_taken=89
+    # list_of_times=[10,20,30]
+    count1 = 0
+    return render_template('depth.html', result=countList, rand1=randList1, rand2=randList1, count=count1, list= list_of_times)
+
+@app.route('/redis_cache')
+def redis_cache():
+    cursor = connection.cursor()
+    magnitude = request.args['magnitude']
+    host_name = 'redism1.redis.cache.windows.net'
+    password = '9HGqR0jGGu2dK7TvXitwPISiq4ETsK5fL5IRngx73hM='
+    cache = redis.StrictRedis(host=host_name, port=6380, password=password, ssl=True)
+    if not cache.get(magnitude):
+        sql = 'select * from all_month where mag>=? '
+        cursor.execute(sql, (magnitude,))
+        rows = cursor.fetchall()
+        cache.set(magnitude, str(rows))
+        flash('In DB Query with Magnitude: ' + str(magnitude))
+    else:
+        rows_string = cache.get(magnitude)
+        flash('In Cache with Magnitude: ' + str(magnitude))
+    return render_template('redis_cache.html')
 if __name__ == '__main__':
     app.run()
