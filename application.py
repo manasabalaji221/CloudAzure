@@ -146,22 +146,46 @@ def depth():
     count1 = 0
     return render_template('depth.html', result=countList, rand1=randList1, rand2=randList1, count=count1, list= list_of_times)
 
-@app.route('/redis_cache')
-def redis_cache():
-    cursor = connection.cursor()
-    magnitude = request.args['magnitude']
-    host_name = 'redism1.redis.cache.windows.net'
-    password = '9HGqR0jGGu2dK7TvXitwPISiq4ETsK5fL5IRngx73hM='
-    cache = redis.StrictRedis(host=host_name, port=6380, password=password, ssl=True)
-    if not cache.get(magnitude):
-        sql = 'select * from all_month where mag>=? '
-        cursor.execute(sql, (magnitude,))
-        rows = cursor.fetchall()
-        cache.set(magnitude, str(rows))
-        flash('In DB Query with Magnitude: ' + str(magnitude))
-    else:
-        rows_string = cache.get(magnitude)
-        flash('In Cache with Magnitude: ' + str(magnitude))
-    return render_template('redis_cache.html')
+# @app.route('/redis_cache')
+# def redis_cache():
+#     cursor = connection.cursor()
+#     magnitude = request.args['magnitude']
+#     host_name = 'redism1.redis.cache.windows.net'
+#     password = '9HGqR0jGGu2dK7TvXitwPISiq4ETsK5fL5IRngx73hM='
+#     cache = redis.StrictRedis(host=host_name, port=6380, password=password, ssl=True)
+#     for i in range(0, int(count)):
+#         start_intermediate_time = time.time()
+#         rand1 = random.randint(int(depth1), int(depth2))
+#         rand2 = random.randint(int(depth1), int(depth2))
+#         if(rand1 > rand2):
+#             t = rand1
+#             rand1 = rand2
+#             rand2 = t
+#
+#         sql = "select count(*) from quake6 where depthError >= ? and depthError <= ?"
+#         paramlist = [str(rand1), str(rand2)]
+#
+#         cursor.execute(sql, paramlist)
+#         result = cursor.fetchall()
+#         countList.append(result)
+#         randList1.append(str(rand1))
+#         randList2.append(str(rand2))
+#         if not cache.get(rand1):
+#             flash('In DB Query with Magnitude: ' + str(rand1))
+#         else:
+#             rows_string = cache.get(rand1)
+#             flash('In Cache with Magnitude: ' + str(rand1))
+#         end_intermediate_time = time.time()
+#         intermediate_time = end_intermediate_time - start_intermediate_time
+#
+#         sql = 'select * from all_month where mag>=? '
+#         cursor.execute(sql, (magnitude,))
+#         rows = cursor.fetchall()
+#         cache.set(magnitude, str(rows))
+#
+#     return render_template('question7.html')
+
+
+
 if __name__ == '__main__':
     app.run()
