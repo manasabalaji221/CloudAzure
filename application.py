@@ -3,6 +3,7 @@ import random
 import pypyodbc
 import time
 import redis
+import pygal
 
 app = Flask(__name__)
 app.secret_key = "Secret! Dont Tell anyone"
@@ -73,6 +74,7 @@ def redis_cache():
 
 @app.route('/depth_error', methods=['GET', 'POST'])
 def depth_error():
+    bar_chart = pygal.Bar(width=1000, height=500)
     cursor = connection.cursor()
     depth1 = request.args['depth1']
     depth2 = request.args['depth2']
@@ -82,10 +84,16 @@ def depth_error():
     # for i in range(0, int(query_limit)):
     #     start_intermediate_time = time.time()
     sql = "select * from quake6 where depthError >= ? and depthError <= ? and longitude > ?"
-    paramlist=[depth1, depth2, longitude]
+    paramlist = [depth1, depth2, longitude]
     cursor.execute(sql, paramlist)
     result = cursor.fetchall()
-
+    depth = []
+    longitude = []
+    for row in result:
+        depth.append(str(row[3]))
+        longitude.append(row[2])
+    bar_chart.add(depth, longitude)
+    return render_template('depth_error.html', chart=bar_chart.render_data_uri())
     # cursor.execute("select * from quakes6 where depthError > ? and depthError < ? and longitude > ?")
     # end_intermediate_time = time.time()
     # intermediate_time = end_intermediate_time - start_intermediate_time
@@ -94,7 +102,37 @@ def depth_error():
     # time_taken = (end_time-start_time) / int(query_limit)
     # #time_taken=89
     # list_of_times=[10,20,30]
-    return render_template('depth_error.html', result=result)
+    # return render_template('depth_error.html', result=result)
+
+
+@app.route('/bar_chart', methods=['GET', 'POST'])
+def bar_chart():
+    barchart = pygal.Bar(width=1000, height=500)
+    cursor = connection.cursor()
+
+    # start_time = time.time()
+    # list_of_times = []
+    # for i in range(0, int(query_limit)):
+    #     start_intermediate_time = time.time()
+    depth1 = []
+    long = []
+    sql = "select depth from quake6 "
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    for r in result:
+        depth1.append(r[0])
+    sql = "select longitude from quake6 "
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    for r in result:
+        long.append(r[0])
+    # longitude = []
+    # for row in result:
+    #     depth.append(str(row[3]))
+    #     longitude.append(row[2])
+    barchart.add(str(depth1), long)
+    barchart.render()
+    return render_template('chart.html', chart=barchart.render_data_uri())
 
 
 @app.route('/depth', methods=['GET', 'POST'])
@@ -145,6 +183,32 @@ def depth():
     # list_of_times=[10,20,30]
     count1 = 0
     return render_template('depth.html', result=countList, rand1=randList1, rand2=randList1, count=count1, list= list_of_times)
+
+
+@app.route('/question2_execute', methods=['GET'])
+def question2_execute():
+    cursor = connection.cursor()
+    sql = "select * from population where State = 'Alabama' or State = 'Florida'"
+    print(sql)
+    result = cursor.execute(sql).fetchall()
+    xy_chart = pygal.XY(stroke=False, height=300)
+    xy_chart.title = 'Correlation'
+    for r in result:
+        db_years = [None, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]
+        state = ""
+        scatterplot_data = []
+        for i in range(1, len(r)):
+            state = r[0]
+            print(r[0])
+            population_val = r[i]
+            print(r[i])
+            population_val = population_val.replace(",", "")
+            int_val = int(population_val)
+            tuple = (db_years[i], int_val)
+            scatterplot_data.append(tuple)
+        xy_chart.add(state, scatterplot_data)
+    xy_chart.render()
+    return render_template('question2.html', chart=xy_chart.render_data_uri())
 
 # @app.route('/redis_cache')
 # def redis_cache():
