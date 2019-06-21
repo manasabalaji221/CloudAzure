@@ -7,8 +7,7 @@ import pygal
 
 app = Flask(__name__)
 app.secret_key = "Secret! Dont Tell anyone"
-connection = pypyodbc.connect("Driver={ODBC Driver 17 for SQL Server};Server=tcp:servermanasa.database.windows.net,1433;Database=database1;Uid=serverm;Pwd=BluDiam0@;")
-
+connection = pypyodbc.connect("//Give database credentials");
 
 @app.route('/')
 def hello_world():
@@ -130,6 +129,83 @@ def states():
     # time_taken = (end_time1 - start_time1) / int(query_limit)
     return render_template('states_pop.html', pop1=result1, pop2=result2)
 
+# @app.route('/pop_pie', methods=['GET'])
+# def pop_pie():
+#     cursor = connection.cursor()
+#     range = request.args['range']
+#     x=0
+#     y=range
+#     for i in range(x,y):
+#         sql = "select" \
+#               " case " \
+#               " when TotalPop >=? and PercentVote <=? then \'"?-?"\'" \
+# #
+# #     sql = "select" \
+# #     " case " \
+# # 		   " when PercentVote >=40 and PercentVote <=45 then \'40-45\'" \
+# # 		   " when PercentVote >=45.01  and PercentVote <= 50    then \'45-50\' "\
+# #            " when PercentVote >= 50.01 and PercentVote <= 55   then \'50-55\' "\
+# #            " when PercentVote >= 55.01 and PercentVote <= 60  then \'55-60\' "\
+# #            " when PercentVote >= 60.01 and PercentVote <= 65  then \'60-65\' "\
+# # 		   " when PercentVote >= 65.01 and PercentVote <= 70  then \'65-70\' "\
+# # 		   " when PercentVote >= 70.01 and PercentVote <= 75  then \'70-75\' "\
+# # " end As 'PercentVote',"\
+# # "count(*) as Number " \
+# # "from StateVoting" \
+# # " group by " \
+# # "case " \
+# # 		   " when PercentVote >=40 and PercentVote <=45 then \'40-45\'" \
+# # 		   " when PercentVote >=45.01  and PercentVote <= 50    then \'45-50\'"\
+# #            " when PercentVote >= 50.01 and PercentVote <= 55   then \'50-55\' "\
+# #            " when PercentVote >= 55.01 and PercentVote <= 60  then \'55-60\' "\
+# #            " when PercentVote >= 60.01 and PercentVote <= 65  then \'60-65\' "\
+# # 		   " when PercentVote >= 65.01 and PercentVote <= 70  then \'65-70\' " \
+# # 		   " when PercentVote >= 70.01 and PercentVote <= 75  then \'70-75\' " \
+# # "end;"
+#
+#     cursor.execute(sql, )
+#     rows = cursor.fetchall()
+#     pie_chart = pygal.Pie(height=300)
+#     pie_chart.title = 'Percentage of Population'
+#     for row in rows:
+#         pie_chart.add(row[0], row[1])
+#     pie_chart.render()
+#     # return render_template('question3.html', chart=pie_chart.render_data_uri())
+#     return render_template("test.html", chart=pie_chart.render_data_uri())
+
+
+@app.route('/scatter', methods=['GET'])
+def scatter():
+    cursor = connection.cursor()
+    # sql = "Population in range"
+    range1 = request.args['range1']
+    range1 = range1 * 1000
+    range2 = request.args['range2']
+    range2 = range2 * 1000
+    sql = "select StateName,TotalPop from voting where TotalPop>? and TotalPop<?)"
+    param=[range1, range2]
+    cursor.excute(sql,param)
+    result=cursor.fetchall()
+    xy_chart = pygal.XY(stroke=False)
+    xy_chart.title = 'Correlation'
+
+    population = [None, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
+    state = ""
+    scatterplot_data = []
+    for i in range(1, len(result)):
+        state = result[i][0]
+        print(result[i][0])
+        population_val = result[i][1]
+        print(result[i][1])
+        # population_val = population_val.replace(",", "")
+        int_val = int(population_val)
+        tuple = (state[i], population_val)
+        scatterplot_data.append(tuple)
+    xy_chart.add(population, scatterplot_data)
+    xy_chart.render()
+
+    # xy_chart.render()
+    return render_template('scatter.html', chart=xy_chart.render_data_uri())
 
 @app.route('/bar_chart', methods=['GET', 'POST'])
 def bar_chart():
