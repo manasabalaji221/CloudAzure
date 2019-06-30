@@ -7,7 +7,7 @@ import pygal
 
 app = Flask(__name__)
 app.secret_key = "Secret! Dont Tell anyone"
-connection = pypyodbc.connect("Driver={ODBC Driver 17 for SQL Server};Server=tcp:servermanasa.database.windows.net,1433;Database=database1;Uid=serverm;Pwd=BluDiam0@;")
+connection = pypyodbc.connect("Driver={ODBC Driver 13 for SQL Server};Server=tcp:servermanasa.database.windows.net,1433;Database=database1;Uid=serverm;Pwd=BluDiam0@;")
 
 @app.route('/')
 def hello_world():
@@ -380,6 +380,6 @@ def question2_execute():
 #     return render_template('question7.html')
 
 
-
 if __name__ == '__main__':
+    # app.run(host='0.0.0.0', port=8080)
     app.run()
