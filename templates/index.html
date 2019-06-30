@@ -13,6 +13,25 @@
     </h1>
     <h2>The number of rows in the file is: {{count}}</h2>
 
+
+<form action="/states" method="get">
+   Chart: <input type="submit" value="Find states">
+</form>
+
+
+<form action="/bar_chart" method="get">
+   Chart: <input type="submit" value="Execute">
+</form>
+
+<form name="pop_pie" action = "/pop_pie" method = "get" enctype = "multipart/form-data">
+Give a range: <input type="text" name="range">
+   <input type="Submit" value="Search">
+</form>
+
+<form action="/scatter" method="get">
+   Chart: <input type="submit" value="Scatter">
+</form>
+
 <!--<br/><br/>-->
 <!--<form name="query_random" action = "/query_random" method = "get" enctype = "multipart/form-data">-->
 <!--    Give a query limit: <input type="text" name="query_limit">-->

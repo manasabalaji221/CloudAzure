@@ -50,5 +50,15 @@
     {% endfor %}
 </table>
 
+
+{% if chart %}
+    <embed type="image/svg+xml" src= {{ chart|safe }} />
+<!--    <embed type="image/svg+xml" src="/mysvg.svg" /> -->
+{% endif %}
+
+<form action="/bar_chart" method="get">
+   Chart: <input type="submit" value="Execute">
+</form>
+
 </body>
 </html>
