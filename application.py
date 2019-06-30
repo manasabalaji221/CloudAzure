@@ -36,6 +36,7 @@ def query_random():
     #list_of_times=[10,20,30]
     return render_template('graph.html', time_taken=time_taken, list_of_times=list_of_times)
 
+
 @app.route('/restricted')
 def restricted():
     cursor=connection.cursor()
