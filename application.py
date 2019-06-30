@@ -7,7 +7,7 @@ import pygal
 
 app = Flask(__name__)
 app.secret_key = "Secret! Dont Tell anyone"
-connection = pypyodbc.connect("//Give database credentials");
+connection = pypyodbc.connect("Driver={ODBC Driver 13 for SQL Server};Server=tcp:servermanasa.database.windows.net,1433;Database=database1;Uid=serverm;Pwd=BluDiam0@;")
 
 @app.route('/')
 def hello_world():
@@ -18,24 +18,61 @@ def hello_world():
     return render_template('index.html', count=count)
 
 
-# @app.route('/query_random', methods=['GET', 'POST'])
-# def query_random():
-#     cursor = connection.cursor()
-#     query_limit = request.args['query_limit']
-#     start_time = time.time()
-#     list_of_times = []
-#     for i in range(0, int(query_limit)):
-#         start_intermediate_time = time.time()
-#         cursor.execute("select TOP 1 * from all_month order by rand()")
-#         end_intermediate_time = time.time()
-#         intermediate_time = end_intermediate_time - start_intermediate_time
-#         list_of_times.append(intermediate_time)
-#     end_time = time.time()
-#     time_taken = (end_time-start_time) / int(query_limit)
-#     #time_taken=89
-#     #list_of_times=[10,20,30]
-#     return render_template('graph.html', time_taken=time_taken, list_of_times=list_of_times)
-#
+@app.route('/query_random', methods=['GET', 'POST'])
+def query_random():
+    cursor = connection.cursor()
+    query_limit = request.args['query_limit']
+    start_time = time.time()
+    list_of_times = []
+    for i in range(0, int(query_limit)):
+        start_intermediate_time = time.time()
+        cursor.execute("select TOP 1 * from all_month order by rand()")
+        end_intermediate_time = time.time()
+        intermediate_time = end_intermediate_time - start_intermediate_time
+        list_of_times.append(intermediate_time)
+    end_time = time.time()
+    time_taken = (end_time-start_time) / int(query_limit)
+    #time_taken=89
+    #list_of_times=[10,20,30]
+    return render_template('graph.html', time_taken=time_taken, list_of_times=list_of_times)
+
+
+@app.route('/restricted')
+def restricted():
+    cursor = connection.cursor()
+    query_limit = request.args['query_limit1']
+    lowmag = request.args['lowmag']
+    highermag = request.args['highermag']
+    start_time1 = time.time()
+    for i in range(0, int(query_limit)):
+        rngvalue = random.uniform(float(lowmag), float(highermag))
+        sql = 'select * from all_month where mag>=? '
+        cursor.execute(sql, (rngvalue,))
+        end_time1 = time.time()
+        time_taken = (end_time1 - start_time1) / int(query_limit)
+    return render_template('restricted.html', time_taken=time_taken)
+
+
+@app.route('/redis_cache')
+def redis_cache():
+    # @app.route('/query_random', methods=['GET', 'POST'])
+    # def query_random():
+    cursor = connection.cursor()
+    query_limit = request.args['query_limit']
+    start_time = time.time()
+    list_of_times = []
+    for i in range(0, int(query_limit)):
+        start_intermediate_time = time.time()
+        cursor.execute("select TOP 1 * from all_month order by rand()")
+        end_intermediate_time = time.time()
+        intermediate_time = end_intermediate_time - start_intermediate_time
+        list_of_times.append(intermediate_time)
+    end_time = time.time()
+    time_taken = (end_time-start_time) / int(query_limit)
+    #time_taken=89
+    #list_of_times=[10,20,30]
+    return render_template('graph.html', time_taken=time_taken, list_of_times=list_of_times)
+
 # @app.route('/restricted')
 # def restricted():
 #     cursor=connection.cursor()
@@ -50,7 +87,7 @@ def hello_world():
 #         end_time1 = time.time()
 #         time_taken = (end_time1 - start_time1) / int(query_limit)
 #     return render_template('restricted.html', time_taken=time_taken)
-#
+
 #
 # @app.route('/redis_cache')
 # def redis_cache():
@@ -71,39 +108,38 @@ def hello_world():
 #     return render_template('redis_cache.html')
 #
 #
-# @app.route('/depth_error', methods=['GET', 'POST'])
-# def depth_error():
-#     bar_chart = pygal.Bar(width=1000, height=500)
-#     cursor = connection.cursor()
-#     depth1 = request.args['depth1']
-#     depth2 = request.args['depth2']
-#     longitude = request.args['longitude']
-#     # start_time = time.time()
-#     # list_of_times = []
-#     # for i in range(0, int(query_limit)):
-#     #     start_intermediate_time = time.time()
-#     sql = "select * from quake6 where depthError >= ? and depthError <= ? and longitude > ?"
-#     paramlist = [depth1, depth2, longitude]
-#     cursor.execute(sql, paramlist)
-#     result = cursor.fetchall()
-#     depth = []
-#     longitude = []
-#     for row in result:
-#         depth.append(str(row[3]))
-#         longitude.append(row[2])
-#     bar_chart.add(depth, longitude)
-#     return render_template('depth_error.html', chart=bar_chart.render_data_uri())
-#     # cursor.execute("select * from quakes6 where depthError > ? and depthError < ? and longitude > ?")
-#     # end_intermediate_time = time.time()
-#     # intermediate_time = end_intermediate_time - start_intermediate_time
-#     # list_of_times.append(intermediate_time)
-#     # end_time = time.time()
-#     # time_taken = (end_time-start_time) / int(query_limit)
-#     # #time_taken=89
-#     # list_of_times=[10,20,30]
-#     # return render_template('depth_error.html', result=result)
-
-
+@app.route('/depth_error', methods=['GET', 'POST'])
+def depth_error():
+    bar_chart = pygal.Bar(width=1000, height=500)
+    cursor = connection.cursor()
+    depth1 = request.args['depth1']
+    depth2 = request.args['depth2']
+    longitude = request.args['longitude']
+    # start_time = time.time()
+    # list_of_times = []
+    # for i in range(0, int(query_limit)):
+    #     start_intermediate_time = time.time()
+    sql = "select * from quake6 where depthError >= ? and depthError <= ? and longitude > ?"
+    paramlist = [depth1, depth2, longitude]
+    cursor.execute(sql, paramlist)
+    result = cursor.fetchall()
+    depthx = []
+    longitude = []
+    for row in result:
+        depthx.append(str(row[3]))
+        longitude.append(row[2])
+    bar_chart.add(depthx, longitude)
+    return render_template('depth_error.html', result = result)
+    # return render_template('depth_error.html', chart=bar_chart.render_data_uri())
+    # cursor.execute("select * from quakes6 where depthError > ? and depthError < ? and longitude > ?")
+    # end_intermediate_time = time.time()
+    # intermediate_time = end_intermediate_time - start_intermediate_time
+    # list_of_times.append(intermediate_time)
+    # end_time = time.time()
+    # time_taken = (end_time-start_time) / int(query_limit)
+    # #time_taken=89
+    # list_of_times=[10,20,30]
+    # return render_template('depth_error.html', result=result)
 
 
 @app.route('/states', methods=['GET'])
@@ -344,6 +380,6 @@ def question2_execute():
 #     return render_template('question7.html')
 
 
-
 if __name__ == '__main__':
+    # app.run(host='0.0.0.0', port=8080)
     app.run()

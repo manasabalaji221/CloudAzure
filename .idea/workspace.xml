@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="26d27402-3a85-4f9c-9bcf-78ca45761c4b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
+=======
     <list default="true" id="943616da-a23e-452a-a1e7-fa048afc1147" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/templates/Scatter.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+>>>>>>> fd081a699f838a3716197575009b494c10249dad
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,12 +21,21 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="509">
+              <caret line="139" column="41" lean-forward="true" selection-start-line="139" selection-start-column="41" selection-end-line="139" selection-end-column="41" />
+=======
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="5865">
               <caret line="345" lean-forward="true" selection-start-line="345" selection-end-line="345" />
+>>>>>>> fd081a699f838a3716197575009b494c10249dad
               <folding>
                 <element signature="e#0#54#0" expanded="true" />
               </folding>
@@ -27,6 +43,10 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+    </leaf>
+  </component>
+=======
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
@@ -124,12 +144,15 @@
       <find>rand1</find>
     </findStrings>
   </component>
+>>>>>>> fd081a699f838a3716197575009b494c10249dad
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
+=======
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/templates/graph.html" />
         <option value="$PROJECT_DIR$/templates/restricted.html" />
@@ -142,6 +165,7 @@
         <option value="$PROJECT_DIR$/templates/states_pop.html" />
         <option value="$PROJECT_DIR$/templates/Scatter.html" />
         <option value="$PROJECT_DIR$/templates/index.html" />
+>>>>>>> fd081a699f838a3716197575009b494c10249dad
         <option value="$PROJECT_DIR$/application.py" />
       </list>
     </option>
@@ -149,11 +173,12 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
     <option name="y" value="185" />
+<<<<<<< HEAD
+    <option name="width" value="1350" />
+=======
     <option name="width" value="1349" />
+>>>>>>> fd081a699f838a3716197575009b494c10249dad
     <option name="height" value="520" />
-  </component>
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -168,6 +193,8 @@
               <item name="python-docs-hello-world" type="b2602c69:ProjectViewProjectNode" />
               <item name="python-docs-hello-world" type="462c0819:PsiDirectoryNode" />
             </path>
+<<<<<<< HEAD
+=======
             <path>
               <item name="python-docs-hello-world" type="b2602c69:ProjectViewProjectNode" />
               <item name="python-docs-hello-world" type="462c0819:PsiDirectoryNode" />
@@ -178,6 +205,7 @@
               <item name="python-docs-hello-world" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
+>>>>>>> fd081a699f838a3716197575009b494c10249dad
           </expand>
           <select />
         </subPane>
@@ -185,14 +213,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../cloudtestsummer1" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\manas\python-docs-hello-world\templates" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -211,11 +233,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="943616da-a23e-452a-a1e7-fa048afc1147" name="Default Changelist" comment="" />
-      <created>1560837209961</created>
+      <changelist id="26d27402-3a85-4f9c-9bcf-78ca45761c4b" name="Default Changelist" comment="" />
+      <created>1561921945802</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1560837209961</updated>
+      <updated>1561921945802</updated>
     </task>
     <servers />
   </component>
@@ -223,9 +245,19 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Python Console" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+=======
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17426273" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+>>>>>>> fd081a699f838a3716197575009b494c10249dad
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -243,29 +275,20 @@
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="right" id="R Packages" order="4" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.25" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.32956153" />
-      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="2" />
-      <window_info anchor="bottom" id="Python Console" order="3" weight="0.32956153" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="right" id="R Graphics" order="0" />
-      <window_info anchor="right" id="R Packages" order="1" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/application.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="139" column="41" lean-forward="true" selection-start-line="139" selection-start-column="41" selection-end-line="139" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+=======
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/phrase.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
@@ -375,5 +398,6 @@
         </state>
       </provider>
     </entry>
+>>>>>>> fd081a699f838a3716197575009b494c10249dad
   </component>
 </project>
