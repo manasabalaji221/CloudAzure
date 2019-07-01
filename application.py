@@ -284,25 +284,30 @@ def depth():
     randList2 = []
     for i in range(0, int(count)):
         start_intermediate_time = time.time()
-        rand1 = random.randint(int(depth1), int(depth2))
-        rand2 = random.randint(int(depth1), int(depth2))
-        if(rand1 > rand2):
+        # rand1 = random.randint(float(depth1), float(depth2))
+        # rand2 = random.randint(float(depth1), float(depth2))
+        rand1 = random.uniform(float(depth1), float(depth2))
+        rand2 = random.uniform(float(depth1), float(depth2))
+
+        if rand1 > rand2:
             t = rand1
             rand1 = rand2
             rand2 = t
-
+        randList1.append(rand1)
+        randList2.append(rand2)
         sql = "select count(*) from quake6 where depthError >= ? and depthError <= ?"
         paramlist = [str(rand1), str(rand2)]
 
         cursor.execute(sql, paramlist)
         result = cursor.fetchall()
         countList.append(result)
-        randList1.append(str(rand1))
-        randList2.append(str(rand2))
         end_intermediate_time = time.time()
         intermediate_time = end_intermediate_time - start_intermediate_time
         list_of_times.append(intermediate_time)
-
+    print(randList1)
+    print(randList2)
+    count1 = 0
+    return render_template('depth.html', result=countList, rand1=randList1, rand2=randList2, count=count1, list= list_of_times)
     # cursor.execute("select * from quakes6 where depthError > ? and depthError < ? and longitude > ?")
     # end_intermediate_time = time.time()
     # intermediate_time = end_intermediate_time - start_intermediate_time
@@ -311,8 +316,7 @@ def depth():
     # time_taken = (end_time-start_time) / int(query_limit)
     # #time_taken=89
     # list_of_times=[10,20,30]
-    count1 = 0
-    return render_template('depth.html', result=countList, rand1=randList1, rand2=randList1, count=count1, list= list_of_times)
+
 
 
 @app.route('/question2_execute', methods=['GET'])
