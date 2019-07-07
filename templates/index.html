@@ -8,61 +8,109 @@
 <center>
     <h1>
         1001689246 <br/>
-        Balaji, Manasa<br/><br/>
+        Balaji, Manasa
 
     </h1>
-    <h2>The number of rows in the file is: {{count}}</h2>
 
 
-<form action="/states" method="get">
-   Chart: <input type="submit" value="Find states">
-</form>
 
-
-<form action="/bar_chart" method="get">
-   Chart: <input type="submit" value="Execute">
-</form>
-
-<form name="pop_pie" action = "/pop_pie" method = "get" enctype = "multipart/form-data">
-Give a range: <input type="text" name="range">
-   <input type="Submit" value="Search">
-</form>
-
-<form action="/scatter" method="get">
-   Chart: <input type="submit" value="Scatter">
-</form>
-
-<!--<br/><br/>-->
-<!--<form name="query_random" action = "/query_random" method = "get" enctype = "multipart/form-data">-->
-<!--    Give a query limit: <input type="text" name="query_limit">-->
-<!--    <input type="Submit" value="Search">-->
-<!--</form>-->
-<!--<form name="restricted" action = "/restricted" method = "get" enctype = "multipart/form-data">-->
-<!--    Enter the number of queries to process: <input type="number" name="query_limit1">-->
-<!--    Lower magnitude: <input type="number" name="lowmag">  Higher Magnitude: <input type="number" name="highermag">  <br>-->
-
-<!--    <input type="Submit" value="Search">-->
-<!--</form>-->
-<!--<form name="redis_cache" action = "/redis_cache" method = "get" enctype = "multipart/form-data">-->
-<!--    Give a magnitude value(checking with cache: <input type="text" name="magnitude">-->
-<!--    <input type="Submit" value="Search">-->
+<!--<form action="/states" method="get">-->
+<!--   Chart: <input type="submit" value="Find states">-->
 <!--</form>-->
 
-<form name="depth_error" action = "/depth_error" method = "get" enctype = "multipart/form-data">
-    Depth Range from:<input type="text" name="depth1">
-    To: <input type="text" name="depth2">
-    Longitude:<input type="text" name="longitude">
+
+<!--<form action="/bar_chart" method="get">-->
+<!--   Chart: <input type="submit" value="Execute">-->
+<!--</form>-->
+
+<!--<form name="pop_pie" action = "/pop_pie" method = "get" enctype = "multipart/form-data">-->
+<!--Give a range: <input type="text" name="range">-->
+<!--   <input type="Submit" value="Search">-->
+<!--</form>-->
+
+<!--<form action="/scatter" method="get">-->
+<!--   Chart: <input type="submit" value="Scatter">-->
+<!--</form>-->
+
+    <h3>Question 1:</h3>
+<form name="query_random" action = "/query_random" method = "get" enctype = "multipart/form-data">
+    Give a query limit: <input type="text" name="query_limit">
     <input type="Submit" value="Search">
 </form>
 
-<form name="depth" action = "/depth" method = "get" enctype = "multipart/form-data">
-    Depth Range from:<input type="text" name="depth1">
-    To: <input type="text" name="depth2">
-    Number of times:<input type="text" name="count">
+<br/>
+    <h3><b>Question 2:</b></h3>
+    <b>Choose using magnitude range:</b><br>
+<form name="restricted_mag" action = "/restricted_mag" method = "get" enctype = "multipart/form-data">
+    Enter the number of queries to process: <input type="number" name="query_limit1">
+    Lower magnitude: <input type="number" name="lowmag">  Higher Magnitude: <input type="number" name="highermag">  <br>
+    <input type="Submit" value="Search">
+</form>
+
+        <b>Choose using time range:</b><br>
+<form name="restricted_time" action = "/restricted_time" method = "get" enctype = "multipart/form-data">
+    Enter the number of queries to process: <input type="number" name="query_limit1">
+    Lower time: <input type="date" name="lowtime">  Higher time: <input type="date" name="highertime">  <br>
+    <input type="Submit" value="Search">
+</form>
+
+        <b>Choose for searching the earthquakes occuring in CA:</b><br>
+<form name="restricted_CA" action = "/restricted_CA" method = "get" enctype = "multipart/form-data">
+    Enter the number of queries to process: <input type="number" name="query_limit1">
+    <input type="Submit" value="Search">
+</form>
+
+        <b>Choose for searching N<100 km of a specified lat,long location:</b><br>
+<form name="restricted_loc" action = "/restricted_loc" method = "get" enctype = "multipart/form-data">
+    Enter the number of queries to process: <input type="number" name="query_limit1">
+    Latitude: <input type="text" name="lat">  Longitude: <input type="text" name="long">
     <input type="Submit" value="Search">
 </form>
 
 
+<h3><b>Question 3:</b></h3>
+<form name="redis_cache" action = "/redis_cache" method = "get" enctype = "multipart/form-data">
+    Give a magnitude value(checking with cache: <input type="text" name="magnitude">
+    <input type="Submit" value="Search">
+</form>
+
+<!--<form name="depth_error" action = "/depth_error" method = "get" enctype = "multipart/form-data">-->
+<!--    Depth Range from:<input type="text" name="depth1">-->
+<!--    To: <input type="text" name="depth2">-->
+<!--    Longitude:<input type="text" name="longitude">-->
+<!--    <input type="Submit" value="Search">-->
+<!--</form>-->
+
+<!--<form name="depth" action = "/depth" method = "get" enctype = "multipart/form-data">-->
+<!--    Depth Range from:<input type="text" name="depth1">-->
+<!--    To: <input type="text" name="depth2">-->
+<!--    Number of times:<input type="text" name="count">-->
+<!--    <input type="Submit" value="Search">-->
+<!--</form>-->
+
+
+
+
+<!--Question 7:-->
+<!--<form name="question7_new" action = "/depth" method = "get" enctype = "multipart/form-data">-->
+<!--    Depth Range from:<input type="text" name="depth1">-->
+<!--    To: <input type="text" name="depth2">-->
+<!--    Number of times:<input type="text" name="count">-->
+<!--    <br>-->
+<!--    Choose to use in-memory caching or not(yes/no):<input type="text" name="option">-->
+
+<!--    <input type="Submit" value="Search">-->
+<!--</form>-->
+
+
+
+<!--Question 8:-->
+<!--<form name="redis_cache_new" action = "/redis_cache_new" method = "get" enctype = "multipart/form-data">-->
+<!--    Depth Range from:<input type="text" name="depth1">-->
+<!--    To: <input type="text" name="depth2">-->
+<!--    Number of times:<input type="text" name="count">-->
+<!--    <input type="Submit" value="Search">-->
+<!--</form>-->
 <br/><br/>
 </center>
 </body>
