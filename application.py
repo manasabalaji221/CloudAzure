@@ -137,7 +137,7 @@ def redis_cache():
     password = '9HGqR0jGGu2dK7TvXitwPISiq4ETsK5fL5IRngx73hM='
     cache = redis.StrictRedis(host=host_name, port=6380, password=password, ssl=True)
     if not cache.get(magnitude):
-        sql = 'select * from quake6 where mag>=? '
+        sql = 'select * from all_month where mag>=? '
         cursor.execute(sql, (magnitude,))
         rows = cursor.fetchall()
         cache.set(magnitude, str(rows))
