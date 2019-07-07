@@ -10,6 +10,24 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
+The average total time required to execute the restricted queries is {{ time_taken }} seconds
+
+    <br><br>
+<table border="1">
+    <tr>
+
+        <th>Time taken for each query</th>
+    </tr>
+
+        <tr>
+            <td>
+                {{ list_of_times }}
+            </td>
+
+        </tr>
+
+</table>
+<br>
 {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
