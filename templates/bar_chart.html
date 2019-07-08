@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bar_chart</title>
+</head>
+<body>
+   <h1>
+        1001689246 <br/>
+        Balaji, Manasa<br/><br/>
+
+    </h1>
+
+{% if chart%}
+    <embed type="image/svg+xml" src= {{ chart|safe }} />
+{% endif %}
+</body>
+</html>

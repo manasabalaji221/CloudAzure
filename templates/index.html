@@ -11,48 +11,77 @@
         Balaji, Manasa<br/><br/>
 
     </h1>
-    <h2>The number of rows in the file is: {{count}}</h2>
+    <br><br>
 
-
-<form action="/states" method="get">
-   Chart: <input type="submit" value="Find states">
+<b>To create a bar chart:</b>
+<form action="/chart_bar" method="get">
+    Enter the attribute name:<input type="text" name="att" method="get" >
+    Enter lower range1<input type="text" name="lrange1" method="get" >
+    Enter higher range1<input type="text" name="hrange1" method="get" >
+    Enter lower range2<input type="text" name="lrange2" method="get" >
+    Enter higher range2<input type="text" name="hrange2" method="get" >
+    Enter lower range3<input type="text" name="lrange3" method="get" >
+    Enter higher range3<input type="text" name="hrange3" method="get" >
+    <input type="submit" value="Execute">
 </form>
+<br><br>
 
-
-<form action="/bar_chart" method="get">
-   Chart: <input type="submit" value="Execute">
+<b>To create a pie chart:</b>
+<form action="/chart_pie" method="get">
+    Enter the attribute name:<input type="text" name="att" method="get" >
+    Enter lower range1<input type="text" name="lrange1" method="get" >
+    Enter higher range1<input type="text" name="hrange1" method="get" >
+    Enter lower range2<input type="text" name="lrange2" method="get" >
+    Enter higher range2<input type="text" name="hrange2" method="get" >
+    Enter lower range3<input type="text" name="lrange3" method="get" >
+    Enter higher range3<input type="text" name="hrange3" method="get" >
+    <input type="submit" value="Execute">
 </form>
+<br><br>
+<b>To create a scatter chart:</b>
+
+<form action="/chart_xy" method="get">
+    Enter the attribute name:<input type="text" name="att" method="get" >
+    Enter lower range1<input type="text" name="lrange1" method="get" >
+    Enter higher range1<input type="text" name="hrange1" method="get" >
+    Enter lower range2<input type="text" name="lrange2" method="get" >
+    Enter higher range2<input type="text" name="hrange2" method="get" >
+    Enter lower range3<input type="text" name="lrange3" method="get" >
+    Enter higher range3<input type="text" name="hrange3" method="get" >
+    <input type="submit" value="Execute">
+</form>
+<!--<form action="/states" method="get">-->
+<!--   Chart: <input type="submit" value="Find states">-->
+<!--</form>-->
 
 
-<!--<br/><br/>-->
-<!--<form name="query_random" action = "/query_random" method = "get" enctype = "multipart/form-data">-->
-<!--    Give a query limit: <input type="text" name="query_limit">-->
+<!--<form action="/bar_chart" method="get">-->
+<!--   Chart: <input type="submit" value="Execute">-->
+<!--</form>-->
+
+<!--<form name="pop_pie" action = "/pop_pie" method = "get" enctype = "multipart/form-data">-->
+<!--Give a range: <input type="text" name="range">-->
+<!--   <input type="Submit" value="Search">-->
+<!--</form>-->
+
+<!--<form action="/scatter" method="get">-->
+<!--   Chart: <input type="submit" value="Scatter">-->
+<!--</form>-->
+
+
+<!--<form name="depth_error" action = "/depth_error" method = "get" enctype = "multipart/form-data">-->
+<!--    Depth Range from:<input type="text" name="depth1">-->
+<!--    To: <input type="text" name="depth2">-->
+<!--    Longitude:<input type="text" name="longitude">-->
 <!--    <input type="Submit" value="Search">-->
 <!--</form>-->
-<!--<form name="restricted" action = "/restricted" method = "get" enctype = "multipart/form-data">-->
-<!--    Enter the number of queries to process: <input type="number" name="query_limit1">-->
-<!--    Lower magnitude: <input type="number" name="lowmag">  Higher Magnitude: <input type="number" name="highermag">  <br>-->
 
+<!--<form name="depth" action = "/depth" method = "get" enctype = "multipart/form-data">-->
+<!--    Depth Range from:<input type="text" name="depth1">-->
+<!--    To: <input type="text" name="depth2">-->
+<!--    Number of times:<input type="text" name="count">-->
 <!--    <input type="Submit" value="Search">-->
 <!--</form>-->
-<!--<form name="redis_cache" action = "/redis_cache" method = "get" enctype = "multipart/form-data">-->
-<!--    Give a magnitude value(checking with cache: <input type="text" name="magnitude">-->
-<!--    <input type="Submit" value="Search">-->
-<!--</form>-->
-
-<form name="depth_error" action = "/depth_error" method = "get" enctype = "multipart/form-data">
-    Depth Range from:<input type="text" name="depth1">
-    To: <input type="text" name="depth2">
-    Longitude:<input type="text" name="longitude">
-    <input type="Submit" value="Search">
-</form>
-
-<form name="depth" action = "/depth" method = "get" enctype = "multipart/form-data">
-    Depth Range from:<input type="text" name="depth1">
-    To: <input type="text" name="depth2">
-    Number of times:<input type="text" name="count">
-    <input type="Submit" value="Search">
-</form>
 
 
 <br/><br/>
