@@ -7,7 +7,7 @@ import pygal
 
 app = Flask(__name__)
 app.secret_key = "Secret! Dont Tell anyone"
-conn = pypyodbc.connect("Driver={ODBC Driver 17 for SQL Server};Server=tcp:servermanasa.database.windows.net,1433;Database=database1;Uid=serverm;Pwd=BluDiam0@;")
+conn = pypyodbc.connect("**Put your connection string here**")
 
 
 @app.route('/')
